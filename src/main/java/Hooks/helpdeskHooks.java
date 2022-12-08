@@ -8,8 +8,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import testbase.HelpDeskConstants;
@@ -17,6 +15,8 @@ import testbase.HelpDeskConstants;
 public class helpdeskHooks {
 
 	public static WebDriver driver;
+	
+	
 	@BeforeClass
 	public synchronized static WebDriver createBrowser(String browser, boolean headless) throws Exception {
 

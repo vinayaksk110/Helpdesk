@@ -8,15 +8,10 @@ public class HelpDeskConstants {
 	public static final String CHROME = "chrome";
 	
 	public static final String URL_LOGIN ="https://www.idrive.com/idrive/login/loginForm";
+	public static final String CONFIG = "src\\test\\resources\\config.properties";
 	
 	// Path of the Credentials file
 	public static final String CREDENTIALS_PATH = "src\\test\\resources\\sheetsAPIclient_secret.json";
-	
-	// The path of file to be uploaded
-	private static final String UPLOAD_PATH_OF_FILE1 ="C:\\Users\\";
-	private static final String UPLOAD_PATH_OF_FILE2 = "\\OneDrive\\Desktop\\Finland_Serbia_Locator.png";
-	private static final String loggedInUser = System.getProperty("user.name");
-	public static final String PATH_OF_FILETOBEUPLOADED = UPLOAD_PATH_OF_FILE1.concat(loggedInUser.concat(UPLOAD_PATH_OF_FILE2));
 	
 	// The worksheet ID where test result report will be written.
 	// Account : automationreports@idrive.com / WorkSheet Name : IDrive_TestResults / IDrive_AccountsForTesting
