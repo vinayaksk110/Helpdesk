@@ -1,0 +1,13 @@
+/target/
+/.classpath
+/debug.log
+/tokens/
+/.settings/
+/bin/
+/test-output/
+/dataclass/
+/resources/
+/.project
+/src/test/resources/
+/src/main/resources/
+/src/test/resources/sheetsAPIclient_secret.json
