@@ -1,6 +1,5 @@
 package testbase;
 
-
 import utilities.DateNTime;
 import utilities.GoogleDriveExcelUtility;
 
@@ -12,14 +11,11 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -36,21 +32,20 @@ public class TestBase {
 	String chromeDriverPath = null;
 	boolean excelStatus = false;
 	boolean headless = false;
-	
+
 	protected GoogleDriveExcelUtility excelUtility = null;
-	
-	//For writing to excel sheet.
+
+	// For writing to excel sheet.
 	protected String testName = null;
 	protected String testResult = "FAIL";
 	protected String testResultComment = "Test has not yet started";
-	
+
 	protected SoftAssert softAssertion = new SoftAssert();
 
 	/**
 	 * This method loads the project config file
 	 * 
-	 * @throws IOException,
-	 *             FileNotFoundException
+	 * @throws IOException, FileNotFoundException
 	 */
 	private void loadPropertiesFile() throws IOException, FileNotFoundException {
 		f = new File(HelpDeskConstants.CONFIG);
@@ -65,91 +60,77 @@ public class TestBase {
 	}
 
 	/**
-	 * This method initialized the project by loading the properties files,
-	 * creates the required browser and
-	 * creates the wait element of the project.
+	 * This method initialized the project by loading the properties files, creates
+	 * the required browser and creates the wait element of the project.
+	 * 
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
 	public void initializeTestingEnvironment(String excelFileStatus, String browser, String headless) throws Exception {
 		System.out.println("==========Initializing Test Environment==============");
-		System.out.println(excelFileStatus+ " : "+browser+" : "+headless);
+		System.out.println(excelFileStatus + " : " + browser + " : " + headless);
 		if (excelFileStatus.equalsIgnoreCase("yes")) {
 			this.excelStatus = true;
 		}
-		
-		if(headless.equalsIgnoreCase("yes")) {
+
+		if (headless.equalsIgnoreCase("yes")) {
 			this.headless = true;
 		}
-		
+
 		try {
 			// Proceed with loading properties and browser driver creation only if,
-			// the reports can be written to an excel sheet. 
+			// the reports can be written to an excel sheet.
 			Assert.assertEquals(this.excelStatus, true);
-		
+
 			// Load the project properties file and create the required browser
 			loadPropertiesFile();
-			
+
 			// Create the browser driver
 //			createBrowser(browser, this.headless);
-			
-			//Create the object of excel utility to write the results back to sheets in google drive.
-			
+
+			// Create the object of excel utility to write the results back to sheets in
+			// google drive.
+
 			excelUtility = new GoogleDriveExcelUtility(HelpDeskConstants.CREDENTIALS_PATH);
 			excelUtility.addSheetToSpreadSheet(HelpDeskConstants.WORKSHEETID_TESTRESULTS, dateNTime.printCurrentDate());
-			
-			//Create the extent report object for writing the report
+
+			// Create the extent report object for writing the report
 			setupExtentRepoter();
-			
+
 			System.out.println("============================");
-			System.out.println("Project will run in:"); 
-			System.out.println("Brower: "+browser.toUpperCase());
-			System.out.println("Headless = "+this.headless);
+			System.out.println("Project will run in:");
+			System.out.println("Brower: " + browser.toUpperCase());
+			System.out.println("Headless = " + this.headless);
 			System.out.println("============================");
-		
+
 		} catch (AssertionError ae) {
 			System.out.println("Aborting!! : Your excel file is not ready. ");
 			throw ae;
-		} catch(NullPointerException npe) {
+		} catch (NullPointerException npe) {
 			System.out.println("Was unable to create the object for excel drive uitility");
 			npe.getMessage();
 		}
 	}
 
-
-
 	private void setupExtentRepoter() {
-		
-		
+
 	}
-
-
 
 	/**
 	 * This method creates the project specific wait.
 	 * 
 	 * @param wait
-	 * @return 
-	 * @return 
+	 * @return
 	 */
 	public static void createFluenttWait(Wait<WebDriver> wait) throws Exception {
-		if (wait == null) {
-			int timeOut = 30;
-			wait = new FluentWait<WebDriver>(driver)
-					// Timeout time is set to 60
-					.withTimeout(Duration.ofSeconds(timeOut))
-					// polling interval
-					.pollingEvery(Duration.ofMillis(100))
-					// ignore the exception
-					.ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
-			System.out.println("Created wait with browser timeout of "+timeOut+" seconds");
-		}
+		wait = new FluentWait<WebDriver>(driver)
+				// Timeout time is set to 30
+				.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENTTIMEOUT))
+				// polling interval
+				.pollingEvery(Duration.ofMillis(100))
+				// ignore the exception
+				.ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
+		System.out.println("Created wait with browser timeout of " + HelpDeskConstants.FLUENTTIMEOUT + " seconds");
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

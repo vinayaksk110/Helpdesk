@@ -7,8 +7,8 @@ public class HelpDeskConstants {
 	public static final String FIREFOX = "firefox";
 	public static final String CHROME = "chrome";
 	
-	public static final String URL_LOGIN ="https://www.idrive.com/idrive/login/loginForm";
 	public static final String CONFIG = "src\\test\\resources\\config.properties";
+	public static final int FLUENTTIMEOUT = 30;
 	
 	// Path of the Credentials file
 	public static final String CREDENTIALS_PATH = "src\\test\\resources\\sheetsAPIclient_secret.json";
