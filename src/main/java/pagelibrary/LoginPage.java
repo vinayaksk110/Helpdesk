@@ -7,12 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.asserts.SoftAssert;
 
-import testbase.TestBase;
-
-public class LoginPage extends TestBase{
+public class LoginPage{
 	WebDriver driver;
     SoftAssert softAssert = new SoftAssert();
-//	private Wait<WebDriver> wait = null;
+	private Wait<WebDriver> wait = null;
 	
 	@FindBy(id = "email")
 	public WebElement txtbxEmail;
@@ -30,16 +28,16 @@ public class LoginPage extends TestBase{
 	 * This is the constructor that takes the web driver from test base and sets it to the Login page functions
 	 * @param driver
 	 */
-//	public LoginPage(WebDriver driver, Wait<WebDriver> wait) {
-//		this.driver = driver;
-//		this.wait = wait;
-//		PageFactory.initElements(this.driver, this);		
-//	}
-	
-	public LoginPage(WebDriver driver) {
+	public LoginPage(WebDriver driver, Wait<WebDriver> wait) {
 		this.driver = driver;
+		this.wait = wait;
 		PageFactory.initElements(this.driver, this);		
 	}
+	
+//	public LoginPage(WebDriver driver) {
+//		this.driver = driver;
+//		PageFactory.initElements(this.driver, this);		
+//	}
 	
 	
 	/**

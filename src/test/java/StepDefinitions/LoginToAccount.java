@@ -1,23 +1,18 @@
 package StepDefinitions;
 
-import java.time.Duration;
-import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
-import Hooks.helpdeskHooks;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pagelibrary.HomePage;
 import pagelibrary.LoginPage;
-import testbase.HelpDeskConstants;
+import testRunner.RedesignedHDTestRunner;
 import testbase.TestBase;
 
-public class LoginToAccount {
+public class LoginToAccount extends RedesignedHDTestRunner {
 
 	private static WebDriver driver;
 	LoginPage loginPage = null;
@@ -26,17 +21,17 @@ public class LoginToAccount {
 	private Wait<WebDriver> wait;
 
 	public LoginToAccount() throws Exception {
-		this.driver = helpdeskHooks.createBrowser("chrome", false);
 		testBase = new TestBase();
-		loginPage = new LoginPage(driver);
-//		homePage = new HomePage(driver, wait);
-		wait = new FluentWait<WebDriver>(driver)
-				.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENTTIMEOUT))
-				// polling interval
-				.pollingEvery(Duration.ofMillis(100))
-				// ignore the exception
-				.ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
-		
+		loginPage = new LoginPage(driver, wait);
+		homePage = new HomePage(driver, wait);
+//		loginPage = new LoginPage(driver);
+//		wait = new FluentWait<WebDriver>(driver)
+//				.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENTTIMEOUT))
+//				// polling interval
+//				.pollingEvery(Duration.ofMillis(100))
+//				// ignore the exception
+//				.ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
+//		
 	}
 
 	@Given("user is on login page")
