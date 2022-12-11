@@ -7,7 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.asserts.SoftAssert;
 
-public class LoginPage{
+import testRunner.RedesignedHDTestRunner;
+
+public class LoginPage extends RedesignedHDTestRunner{
 	WebDriver driver;
     SoftAssert softAssert = new SoftAssert();
 	private Wait<WebDriver> wait = null;

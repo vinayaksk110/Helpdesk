@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
@@ -26,7 +25,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	
 	TestBase testbase = new TestBase();
 	
-	@BeforeSuite
+	@BeforeSuite(alwaysRun = true)
 	public void initializeEnvironment(@Optional("yes") String excelFileStatus, @Optional("chrome") String browser,
 			@Optional("no") String headlessMode) throws FileNotFoundException, IOException {
 		try {
