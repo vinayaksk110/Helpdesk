@@ -1,5 +1,8 @@
 package StepDefinitions.ProfileActions;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -23,19 +26,31 @@ public class UpdateFirstName extends RedesignedHDTestRunner {
 	}
 	
 	@Given("user is on home page and navigates to profiles")
-	public void user_is_on_home_page_and_navigates_to_profiles() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void UserNavigatesToHomePage() {
+		try {
+			driver.get(repository.getProperty("LoginURL"));
+			wait.until(ExpectedConditions.visibilityOf(loginPage.txtbxEmail));
+			loginPage.fillUserCredentials("vinayak.kumbar+team@idrive.com", "test12");
+			loginPage.clickSignIn();
+		}catch(Exception e) {
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
 	}
 	@When("user updates the first name and clicks on Save")
-	public void user_updates_the_first_name_and_clicks_on_save() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void UserUpdatingFirstName() {
+		try {
+			headerPage.clickMyAccount();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	    
 	}
 	@Then("user details shoule be saved")
-	public void user_details_shoule_be_saved() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void SuccessMessage() {
+	    
 	}
 
 

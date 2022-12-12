@@ -38,7 +38,6 @@ public class LoginToAccount extends RedesignedHDTestRunner {
 	@When("user enters the admin username and password and clicks Login")
 	public void EnterCredsAndClickLogin() {
 		try {
-
 			wait.until(ExpectedConditions.visibilityOf(loginPage.txtbxEmail));
 			loginPage.fillUserCredentials("vinayak.kumbar+team@idrive.com", "test12");
 			loginPage.clickSignIn();
