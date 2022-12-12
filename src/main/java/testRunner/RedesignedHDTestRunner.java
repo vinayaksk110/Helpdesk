@@ -1,7 +1,7 @@
 package testRunner;
 
-
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -33,17 +34,12 @@ import testbase.HelpDeskConstants;
 import utilities.DateNTime;
 import utilities.GoogleDriveExcelUtility;
 
-
-@CucumberOptions(
-		features = "src\\test\\resources\\Features",
-		glue = { "StepDefinitions" },
-		plugin = {"pretty"},
-		monochrome = true,
-		dryRun = false)
+@CucumberOptions(features = "src\\test\\resources\\Features", glue = { "StepDefinitions\\ProfileActions" }, plugin = { "pretty",
+		"html:target/cucumber-reports" }, monochrome = true, dryRun = false)
 
 public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
-	
-	public static Properties repository = new Properties();
+
+	public static Properties repository = null;
 	public File f = null;
 	public InputStream fis = null;
 	public static WebDriver driver = null;
@@ -64,11 +60,11 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	protected String testResultComment = "Test has not yet started";
 
 	protected SoftAssert softAssertion = new SoftAssert();
-	
+
 	@BeforeClass
 	public void initializeEnvironment(@Optional("yes") String excelFileStatus, @Optional("chrome") String browser,
 			@Optional("no") String headlessMode) throws FileNotFoundException, IOException {
-		System.out.println("\n \nStarting the test on TestCase: " + testName);
+//		System.out.println("\n \nStarting the test on TestCase: " + testName);
 		try {
 			initializeTestingEnvironment(excelFileStatus, browser, headlessMode);
 		} catch (FileNotFoundException fnfe) {
@@ -84,8 +80,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 		}
 
 	}
-	
-	
+
 	@AfterClass
 	public void closeEnvironment() {
 		// Write the test results and then shut down the environment.
@@ -104,78 +99,83 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	 * 
 	 * @throws IOException, FileNotFoundException
 	 */
-//	private void loadPropertiesFile() throws IOException, FileNotFoundException {
-//		f = new File(HelpDeskConstants.HDCONFIG);
-//		fis = new FileInputStream(f);
-//
-//		if (fis != null) {
-//			repository.load(fis);
-//			System.out.println("Loaded properties file successfully");
-//		} else {
-//			throw new FileNotFoundException("Property file RemotePCConfig.propertes not found in the resource path");
-//		}
-//	}
+	private void loadPropertiesFile() throws IOException, FileNotFoundException {
+		repository = new Properties();
+		f = new File(HelpDeskConstants.CONFIG);
+		fis = new FileInputStream(f);
+
+		if (fis != null) {
+			repository.load(fis);
+			System.out.println("Loaded properties file successfully");
+		} else {
+			throw new FileNotFoundException("Property file Config.propertes not found in the resource path");
+		}
+	}
 
 	/**
-	 * This method initialized the project by loading the properties files,
-	 * creates the required browser and
-	 * creates the wait element of the project.
+	 * This method initialized the project by loading the properties files, creates
+	 * the required browser and creates the wait element of the project.
+	 * 
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
 	public void initializeTestingEnvironment(String excelFileStatus, String browser, String headless) throws Exception {
 		System.out.println("==========Initializing Test Environment==============");
-		System.out.println(excelFileStatus+ " : "+browser+" : "+headless);
+		System.out.println(excelFileStatus + " : " + browser + " : " + headless);
 		if (excelFileStatus.equalsIgnoreCase("yes")) {
 			this.excelStatus = true;
 		}
-		
-		if(headless.equalsIgnoreCase("yes")) {
+
+		if (headless.equalsIgnoreCase("yes")) {
 			this.headless = true;
 		}
-		
+
 		try {
 			// Proceed with loading properties and browser driver creation only if,
-			// the reports can be written to an excel sheet. 
+			// the reports can be written to an excel sheet.
 			Assert.assertEquals(this.excelStatus, true);
-		
+
 			// Load the project properties file and create the required browser
-//			loadPropertiesFile();
-			
+			loadPropertiesFile();
+
 			// Create the browser driver
 			createBrowser(browser, this.headless);
-			
-			//Create the object of excel utility to write the results back to sheets in google drive.
-			
+
+			// Create the object of excel utility to write the results back to sheets in
+			// google drive.
+
 //			excelUtility = new GoogleDriveExcelUtility(HelpDeskConstants.CREDENTIALS_PATH);
 //			excelUtility.addSheetToSpreadSheet(HelpDeskConstants.WORKSHEETID_TESTRESULTS, dateNTime.printCurrentDate());
-			
-			//Create the extent report object for writing the report
+
+			// Create the extent report object for writing the report
 			setupExtentRepoter();
-			
+
 			System.out.println("============================");
-			System.out.println("Project will run in:"); 
-			System.out.println("Brower: "+browser.toUpperCase());
-			System.out.println("Headless = "+this.headless);
+			System.out.println("Project will run in:");
+			System.out.println("Brower: " + browser.toUpperCase());
+			System.out.println("Headless = " + this.headless);
 			System.out.println("============================");
-		
+
 		} catch (AssertionError ae) {
 			System.out.println("Aborting!! : Your excel file is not ready. ");
 			throw ae;
-			
-			//ae.getMessage();
-			//return;`
-		} catch(NullPointerException npe) {
+
+			// ae.getMessage();
+			// return;`
+		} catch (NullPointerException npe) {
 			System.out.println("Was unable to create the object for excel drive uitility");
 			npe.getMessage();
 		}
 	}
 
+	private String setupExtentRepoter() {
+		String reportConfigPath = repository.getProperty("extentConfigFile");
+		if (reportConfigPath != null)
+			return reportConfigPath;
+		else
+			throw new RuntimeException(
+					"Report Config Path not specified in the Configuration.properties file for the Key : setupExtentRepoter");
 
-
-	private void setupExtentRepoter() {
-		
-		
 	}
 
 	/**
@@ -183,39 +183,38 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	 * 
 	 * @param browser
 	 */
-	private void createBrowser(String browser, boolean headless) throws Exception{
-				
+	private void createBrowser(String browser, boolean headless) throws Exception {
+
 		// Find the operating system.
 		os = System.getProperty("os.name");
-		System.out.println("Environment Operating System: "+os);
+		System.out.println("Environment Operating System: " + os);
 		// Based on the browser type create the required browser for the project
-		if(browser.equalsIgnoreCase(HelpDeskConstants.FIREFOX)) {
-			if(!headless) {
+		if (browser.equalsIgnoreCase(HelpDeskConstants.FIREFOX)) {
+			if (!headless) {
 				System.out.println("Creating Environment: Firefox driver");
 				WebDriverManager.firefoxdriver().setup();
-				//Enable Logging preferences
+				// Enable Logging preferences
 				FirefoxOptions firefoxOptions = new FirefoxOptions();
-				System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+				System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
 				System.out.println("Logging preferences set");
 				driver = new FirefoxDriver(firefoxOptions);
 				System.out.println("Firefox driver created");
 				driver.manage().window().maximize();
-			}else {
+			} else {
 				System.out.println("Creating Environment: Firefox driver in headless mode");
 				WebDriverManager.firefoxdriver().setup();
-				//Enable Logging preferences
+				// Enable Logging preferences
 				FirefoxOptions firefoxOptions = new FirefoxOptions();
-				System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+				System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
 				System.out.println("Logging preferences set");
 				firefoxOptions.addArguments("--headless");
 				driver = new FirefoxDriver(firefoxOptions);
 				System.out.println("Firefox driver created");
 				driver.manage().window().maximize();
 			}
-		}
-		else if (browser.equalsIgnoreCase(HelpDeskConstants.CHROME)) {
+		} else if (browser.equalsIgnoreCase(HelpDeskConstants.CHROME)) {
 			// check if the browser has to be loaded in headless mode
-			if(headless) {
+			if (headless) {
 				System.out.println("Creating Environment: Chrome driver in headless mode");
 				System.setProperty("webdriver.chrome.silentOutput", "true");
 				ChromeOptions chromeOptions = new ChromeOptions();
@@ -226,7 +225,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 				System.out.println("Chrome driver created");
 				driver = new ChromeDriver(chromeOptions);
 				driver.manage().window().maximize();
-			}else {
+			} else {
 				System.out.println("Creating Environment: Chrome driver");
 				System.setProperty("webdriver.chrome.silentOutput", "true");
 				ChromeOptions chromeOptions = new ChromeOptions();
@@ -238,8 +237,8 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 				driver.manage().window().maximize();
 			}
 		}
-		
-		// Once the web driver element is successfully created, 
+
+		// Once the web driver element is successfully created,
 		// Create the fluent wait element using the driver.
 		createFluenttWait(wait);
 	}
@@ -254,15 +253,15 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 			int timeOut = 30;
 			this.wait = new FluentWait<WebDriver>(driver)
 					// Timeout time is set to 60
-					.withTimeout(Duration.ofSeconds(timeOut))
+					.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENTTIMEOUT))
 					// polling interval
 					.pollingEvery(Duration.ofMillis(100))
 					// ignore the exception
 					.ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
-			System.out.println("Created wait with browser timeout of "+timeOut+" seconds");
+			System.out.println("Created wait with browser timeout of " + HelpDeskConstants.FLUENTTIMEOUT + " seconds");
 		}
 	}
-	
+
 	public boolean waitForElement(String element, String elementType) {
 		boolean waitResult = false;
 
@@ -285,7 +284,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 				}
 			}
 
-		}else if (elementType.equalsIgnoreCase("name")) {
+		} else if (elementType.equalsIgnoreCase("name")) {
 			if (elementType.equalsIgnoreCase("name")) {
 				try {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(element)));
@@ -300,9 +299,6 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 		return waitResult;
 	}
 	
-	
-	
-	
+
 
 }
-
