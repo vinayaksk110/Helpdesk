@@ -10,9 +10,10 @@ import org.testng.asserts.SoftAssert;
 import testRunner.RedesignedHDTestRunner;
 
 public class LoginPage extends RedesignedHDTestRunner{
-	WebDriver driver;
-    SoftAssert softAssert = new SoftAssert();
+	private WebDriver driver = null;
 	private Wait<WebDriver> wait = null;
+	
+    SoftAssert softAssert = new SoftAssert();
 	
 	@FindBy(id = "email")
 	public WebElement txtbxEmail;

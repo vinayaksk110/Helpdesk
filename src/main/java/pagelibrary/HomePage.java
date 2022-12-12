@@ -7,14 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
-public class HomePage {
+import testRunner.RedesignedHDTestRunner;
+
+public class HomePage extends RedesignedHDTestRunner{
 	private WebDriver driver = null;
 	private Wait<WebDriver> wait = null;
 	
-	
 	@FindBy(id = "downloadRpc")
 	public WebElement btnDownloadHD;
-	
 	
 	@FindBy(id = "imgSource")
 	public WebElement lnkLoggedInUserName;

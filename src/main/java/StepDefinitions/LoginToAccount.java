@@ -1,9 +1,6 @@
 package StepDefinitions;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,11 +11,9 @@ import testbase.TestBase;
 
 public class LoginToAccount extends RedesignedHDTestRunner {
 
-	private static WebDriver driver;
 	LoginPage loginPage = null;
 	HomePage homePage = null;
 	TestBase testBase = null;
-	private Wait<WebDriver> wait;
 
 	public LoginToAccount() throws Exception {
 		testBase = new TestBase();
@@ -53,6 +48,7 @@ public class LoginToAccount extends RedesignedHDTestRunner {
 
 	@Then("user should be logged in and home page should be displayed")
 	public void homePageShouldBeDisplayed() {
+		wait.until(ExpectedConditions.visibilityOf(homePage.btnDownloadHD));
 		homePage.logout();
 	}
 
