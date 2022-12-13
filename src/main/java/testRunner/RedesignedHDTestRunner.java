@@ -35,12 +35,17 @@ import utilities.DateNTime;
 import utilities.GoogleDriveExcelUtility;
 import utilities.reportUtilities.ReportHelper;
 
-@CucumberOptions(features = "src/test/resources/Features", glue = { "StepDefinitions" }, plugin = { "pretty",
-		"json:target/cucumber.json" }, monochrome = true, dryRun = false)
+@CucumberOptions(
+		features = "src\\test\\resources\\Features",
+		glue = { "StepDefinitions\\Login" },
+		plugin = {"pretty" , "json:target/cucumber.json"},
+		tags = "@LoginTest",
+		monochrome = true,
+		dryRun = false)
 
 public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
-
-	public static Properties repository = null;
+	
+	public static Properties repository = new Properties();
 	public File f = null;
 	public InputStream fis = null;
 	public static WebDriver driver = null;
@@ -63,7 +68,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
 	protected SoftAssert softAssertion = new SoftAssert();
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void initializeEnvironment(@Optional("yes") String excelFileStatus, @Optional("chrome") String browser,
 			@Optional("no") String headlessMode) throws FileNotFoundException, IOException {
 //		System.out.println("\n \nStarting the test on TestCase: " + testName);
@@ -83,7 +88,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void closeEnvironment() {
 		// Write the test results and then shut down the environment.
 		try {
@@ -96,14 +101,14 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 		}
 	}
 	
-//	/**
-//	 * Generates the cucumberReport in target folder
-//	 */
-//	@AfterSuite
-//	public void generateHTMLReports() {
-//		reportHelper = new ReportHelper();
-//		ReportHelper.generateCucumberReport();
-//	}
+	/**
+	 * Generates the cucumberReport in target folder
+	 */
+	@AfterSuite(alwaysRun = true)
+	public void generateHTMLReports() {
+		reportHelper = new ReportHelper();
+		ReportHelper.generateCucumberReport();
+	}
 
 	/**
 	 * This method loads the project config file
