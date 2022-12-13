@@ -27,7 +27,7 @@ public class LoginPage extends RedesignedHDTestRunner{
 	@FindBy(linkText = "Forgot password?")
 	public WebElement lnktxtForgotPassword;
 	
-	@FindBy(id ="signupHeader")
+	@FindBy(linkText = "Sign Up")
 	public WebElement btnSignUp;
 	
 	/**
@@ -65,6 +65,14 @@ public class LoginPage extends RedesignedHDTestRunner{
 	public void clickSignIn() {
 		btnSignIn.click();
 		System.out.println("Clicked on Login button");
+	}
+	
+	/**
+	 * Click on the signup button
+	 */
+	public void clickSignUp() {
+		btnSignUp.click();
+		System.out.println("Clicked on Signup button");
 	}
 	
 	/**

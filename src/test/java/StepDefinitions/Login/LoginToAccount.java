@@ -10,13 +10,11 @@ import pagelibrary.HeaderPage;
 import pagelibrary.HomePage;
 import pagelibrary.LoginPage;
 import testRunner.RedesignedHDTestRunner;
-import testbase.TestBase;
 
 public class LoginToAccount extends RedesignedHDTestRunner {
 
 	LoginPage loginPage = null;
 	HomePage homePage = null;
-	TestBase testBase = null;
 	HeaderPage headerPage = null;
 
 	public LoginToAccount() throws Exception {

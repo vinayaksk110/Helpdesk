@@ -68,6 +68,52 @@ public class SignupPage extends RedesignedHDTestRunner{
 	@FindBy(id ="bill")
 	public WebElement txtBoxBillingAddress;
 	
+	@FindBy(id ="terms_check")
+	public WebElement chkBoxTermsAndConditions;
+	
+	@FindBy(id ="submit-signup")
+	public WebElement btnSignup;
+	
+	public void enterFirstName(String firstName) {
+		txtBoxFirstName.sendKeys(firstName);
+		System.out.println("Entered the first name: "+firstName);
+	}
+	
+	public void enterLastName(String lastName) {
+		txtBoxLastName.sendKeys(lastName);
+		System.out.println("Entered the last name: "+lastName);
+	}
+	
+	public void clickFreeTrialRadioButton() {
+		rdoBtnFreeTrial.click();
+		System.out.println("Clicked on Free trial radio button");
+	}
+	
+	public void enterEmailaddress(String email) {
+		txtBoxEmail.sendKeys(email);
+		System.out.println("Entered the email: "+email);
+	}
+	
+	public void enterPassword(String password) {
+		txtBoxPassword.sendKeys(password);
+		System.out.println("Entered the password: "+password);
+	}
+	
+	public void enterPhoneNumber(String phone) {
+		txtBoxPassword.sendKeys(phone);
+		System.out.println("Entered the phone number: "+phone);
+	}
+	
+	public void clickTermsAndConditions() {
+		chkBoxTermsAndConditions.click();
+		System.out.println("Clicked on Accept terms and conditions");
+	}
+	
+	
+	public void clickSignup() {
+		btnSignup.click();
+		System.out.println("Clicked on signup button");
+	}
 	
 
 }

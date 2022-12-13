@@ -37,9 +37,9 @@ import utilities.reportUtilities.ReportHelper;
 
 @CucumberOptions(
 		features = "src\\test\\resources\\Features",
-		glue = { "StepDefinitions\\Login" },
-		plugin = {"pretty" , "json:target/cucumber.json"},
-		tags = "@LoginTest",
+		glue = { "StepDefinitions" },
+		plugin = {"pretty" , "json:target/cucumber-reports/cucumber-reports.json","html:target/cucumber-reports/cucumber-reports.html"},
+		tags = "@SignupTest",
 		monochrome = true,
 		dryRun = false)
 
@@ -164,7 +164,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 //			excelUtility.addSheetToSpreadSheet(HelpDeskConstants.WORKSHEETID_TESTRESULTS, dateNTime.printCurrentDate());
 
 			// Create the extent report object for writing the report
-			setupExtentRepoter();
+//			setupExtentRepoter();
 
 			System.out.println("============================");
 			System.out.println("Project will run in:");
@@ -184,15 +184,15 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 		}
 	}
 
-	private String setupExtentRepoter() {
-		String reportConfigPath = repository.getProperty("extentConfigFile");
-		if (reportConfigPath != null)
-			return reportConfigPath;
-		else
-			throw new RuntimeException(
-					"Report Config Path not specified in the Configuration.properties file for the Key : setupExtentRepoter");
-
-	}
+//	private String setupExtentRepoter() {
+//		String reportConfigPath = repository.getProperty("extentConfigFile");
+//		if (reportConfigPath != null)
+//			return reportConfigPath;
+//		else
+//			throw new RuntimeException(
+//					"Report Config Path not specified in the Configuration.properties file for the Key : setupExtentRepoter");
+//
+//	}
 
 	/**
 	 * based on the browser required to be run, Create the driver instance.
