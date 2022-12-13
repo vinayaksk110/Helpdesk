@@ -8,7 +8,7 @@ public class HelpDeskConstants {
 	public static final String CHROME = "chrome";
 	
 	public static final String CONFIG = "src\\test\\resources\\Properties\\config.properties";
-	public static final int FLUENTTIMEOUT = 30;
+	public static final int FLUENT_TIMEOUT = 30;
 	
 	// Path of the Credentials file
 	public static final String CREDENTIALS_PATH = "src\\test\\resources\\sheetsAPIclient_secret.json";

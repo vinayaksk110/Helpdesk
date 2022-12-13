@@ -21,8 +21,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.asserts.SoftAssert;
@@ -33,9 +33,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import testbase.HelpDeskConstants;
 import utilities.DateNTime;
 import utilities.GoogleDriveExcelUtility;
+import utilities.reportUtilities.ReportHelper;
 
-@CucumberOptions(features = "src\\test\\resources\\Features", glue = { "StepDefinitions\\ProfileActions" }, plugin = { "pretty",
-		"html:target/cucumber-reports" }, monochrome = true, dryRun = false)
+@CucumberOptions(features = "src/test/resources/Features", glue = { "StepDefinitions" }, plugin = { "pretty",
+		"json:target/cucumber.json" }, monochrome = true, dryRun = false)
 
 public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
@@ -53,6 +54,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	boolean headless = false;
 
 	protected GoogleDriveExcelUtility excelUtility = null;
+	protected ReportHelper reportHelper = null;
 
 	// For writing to excel sheet.
 	protected String testName = null;
@@ -93,6 +95,15 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 			driver.quit();
 		}
 	}
+	
+//	/**
+//	 * Generates the cucumberReport in target folder
+//	 */
+//	@AfterSuite
+//	public void generateHTMLReports() {
+//		reportHelper = new ReportHelper();
+//		ReportHelper.generateCucumberReport();
+//	}
 
 	/**
 	 * This method loads the project config file
@@ -253,12 +264,12 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 			int timeOut = 30;
 			this.wait = new FluentWait<WebDriver>(driver)
 					// Timeout time is set to 60
-					.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENTTIMEOUT))
+					.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENT_TIMEOUT))
 					// polling interval
 					.pollingEvery(Duration.ofMillis(100))
 					// ignore the exception
 					.ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
-			System.out.println("Created wait with browser timeout of " + HelpDeskConstants.FLUENTTIMEOUT + " seconds");
+			System.out.println("Created wait with browser timeout of " + HelpDeskConstants.FLUENT_TIMEOUT + " seconds");
 		}
 	}
 
