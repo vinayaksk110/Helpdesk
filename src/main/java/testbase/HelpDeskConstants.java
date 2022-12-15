@@ -13,6 +13,8 @@ public class HelpDeskConstants {
 	// Path of the Credentials file
 	public static final String CREDENTIALS_PATH = "src\\test\\resources\\sheetsAPIclient_secret.json";
 	
+	public static final String EXCEL_FILEPATH = "src/test/resources/TestData/HelpDeskTestData.xlsx";
+	
 	// The worksheet ID where test result report will be written.
 	// Account : automationreports@idrive.com / WorkSheet Name : IDrive_TestResults / IDrive_AccountsForTesting
 	public static final String WORKSHEETID_TESTRESULTS	= "17SchpMdJmHHxRVsNCjmnAYUzlMxd-FXLT2UalZ_g7oA";
