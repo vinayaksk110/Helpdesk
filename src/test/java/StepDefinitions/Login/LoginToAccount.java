@@ -10,13 +10,11 @@ import pagelibrary.HeaderPage;
 import pagelibrary.HomePage;
 import pagelibrary.LoginPage;
 import testRunner.RedesignedHDTestRunner;
-import testbase.TestBase;
 
 public class LoginToAccount extends RedesignedHDTestRunner {
 
 	LoginPage loginPage = null;
 	HomePage homePage = null;
-	TestBase testBase = null;
 	HeaderPage headerPage = null;
 
 	public LoginToAccount() throws Exception {
@@ -43,6 +41,7 @@ public class LoginToAccount extends RedesignedHDTestRunner {
 			loginPage.clickSignIn();
 		} catch (Exception e) {
 			e.printStackTrace();
+			headerPage.logout();
 			Assert.assertTrue(false);
 		}
 	}
@@ -52,8 +51,10 @@ public class LoginToAccount extends RedesignedHDTestRunner {
 		try {
 			wait.until(ExpectedConditions.visibilityOf(headerPage.btnDownloadHD));
 			headerPage.logout();
+			System.out.println("Login to a account test passed. Download installer was displayed");
 		}catch (Exception e){
-			e.printStackTrace();
+			headerPage.logout();
+			Assert.assertTrue(false);
 		}
 	}
 

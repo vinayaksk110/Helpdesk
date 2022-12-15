@@ -21,8 +21,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.asserts.SoftAssert;
@@ -33,13 +33,19 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import testbase.HelpDeskConstants;
 import utilities.DateNTime;
 import utilities.GoogleDriveExcelUtility;
+import utilities.reportUtilities.ReportHelper;
 
-@CucumberOptions(features = "src\\test\\resources\\Features", glue = { "StepDefinitions\\ProfileActions" }, plugin = { "pretty",
-		"html:target/cucumber-reports" }, monochrome = true, dryRun = false)
+@CucumberOptions(
+		features = "src\\test\\resources\\Features",
+		glue = { "StepDefinitions" },
+		plugin = {"pretty" , "json:target/cucumber-reports/cucumber-reports.json","html:target/cucumber-reports/cucumber-reports.html"},
+		tags = "@SignupTest",
+		monochrome = true,
+		dryRun = false)
 
 public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
-
-	public static Properties repository = null;
+	
+	public static Properties repository = new Properties();
 	public File f = null;
 	public InputStream fis = null;
 	public static WebDriver driver = null;
@@ -53,6 +59,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	boolean headless = false;
 
 	protected GoogleDriveExcelUtility excelUtility = null;
+	protected ReportHelper reportHelper = null;
 
 	// For writing to excel sheet.
 	protected String testName = null;
@@ -61,7 +68,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
 	protected SoftAssert softAssertion = new SoftAssert();
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void initializeEnvironment(@Optional("yes") String excelFileStatus, @Optional("chrome") String browser,
 			@Optional("no") String headlessMode) throws FileNotFoundException, IOException {
 //		System.out.println("\n \nStarting the test on TestCase: " + testName);
@@ -81,7 +88,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void closeEnvironment() {
 		// Write the test results and then shut down the environment.
 		try {
@@ -92,6 +99,15 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 			e.printStackTrace();
 			driver.quit();
 		}
+	}
+	
+	/**
+	 * Generates the cucumberReport in target folder
+	 */
+	@AfterSuite(alwaysRun = true)
+	public void generateHTMLReports() {
+		reportHelper = new ReportHelper();
+		ReportHelper.generateCucumberReport();
 	}
 
 	/**
@@ -148,7 +164,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 //			excelUtility.addSheetToSpreadSheet(HelpDeskConstants.WORKSHEETID_TESTRESULTS, dateNTime.printCurrentDate());
 
 			// Create the extent report object for writing the report
-			setupExtentRepoter();
+//			setupExtentRepoter();
 
 			System.out.println("============================");
 			System.out.println("Project will run in:");
@@ -168,15 +184,15 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 		}
 	}
 
-	private String setupExtentRepoter() {
-		String reportConfigPath = repository.getProperty("extentConfigFile");
-		if (reportConfigPath != null)
-			return reportConfigPath;
-		else
-			throw new RuntimeException(
-					"Report Config Path not specified in the Configuration.properties file for the Key : setupExtentRepoter");
-
-	}
+//	private String setupExtentRepoter() {
+//		String reportConfigPath = repository.getProperty("extentConfigFile");
+//		if (reportConfigPath != null)
+//			return reportConfigPath;
+//		else
+//			throw new RuntimeException(
+//					"Report Config Path not specified in the Configuration.properties file for the Key : setupExtentRepoter");
+//
+//	}
 
 	/**
 	 * based on the browser required to be run, Create the driver instance.
@@ -253,12 +269,12 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 			int timeOut = 30;
 			this.wait = new FluentWait<WebDriver>(driver)
 					// Timeout time is set to 60
-					.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENTTIMEOUT))
+					.withTimeout(Duration.ofSeconds(HelpDeskConstants.FLUENT_TIMEOUT))
 					// polling interval
 					.pollingEvery(Duration.ofMillis(100))
 					// ignore the exception
 					.ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
-			System.out.println("Created wait with browser timeout of " + HelpDeskConstants.FLUENTTIMEOUT + " seconds");
+			System.out.println("Created wait with browser timeout of " + HelpDeskConstants.FLUENT_TIMEOUT + " seconds");
 		}
 	}
 

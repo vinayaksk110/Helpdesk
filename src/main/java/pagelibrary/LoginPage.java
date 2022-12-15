@@ -27,21 +27,19 @@ public class LoginPage extends RedesignedHDTestRunner{
 	@FindBy(linkText = "Forgot password?")
 	public WebElement lnktxtForgotPassword;
 	
+	@FindBy(linkText = "Sign Up")
+	public WebElement btnSignUp;
+	
 	/**
-	 * This is the constructor that takes the web driver from test base and sets it to the Login page functions
+	 * 
 	 * @param driver
+	 * @param wait
 	 */
 	public LoginPage(WebDriver driver, Wait<WebDriver> wait) {
 		this.driver = driver;
 		this.wait = wait;
 		PageFactory.initElements(this.driver, this);		
 	}
-	
-//	public LoginPage(WebDriver driver) {
-//		this.driver = driver;
-//		PageFactory.initElements(this.driver, this);		
-//	}
-	
 	
 	/**
 	 * Allows to enter the users email address into the email text box
@@ -67,6 +65,14 @@ public class LoginPage extends RedesignedHDTestRunner{
 	public void clickSignIn() {
 		btnSignIn.click();
 		System.out.println("Clicked on Login button");
+	}
+	
+	/**
+	 * Click on the signup button
+	 */
+	public void clickSignUp() {
+		btnSignUp.click();
+		System.out.println("Clicked on Signup button");
 	}
 	
 	/**

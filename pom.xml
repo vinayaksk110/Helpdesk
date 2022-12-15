@@ -11,11 +11,13 @@
 		<webdrivermanager.version>5.2.0</webdrivermanager.version>
 		<testng.version>7.4.0</testng.version>
 		<apache.common.version>2.11.0</apache.common.version>
+		<cucmber-reporting>5.6.1</cucmber-reporting>
 		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
 		<maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
 		<maven.compiler.source.version>11</maven.compiler.source.version>
 		<maven.compiler.target.version>11</maven.compiler.target.version>
 	</properties>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 		<dependency>
@@ -48,6 +50,25 @@
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>${cucmber-reporting}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.44</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.0.1-jre</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
