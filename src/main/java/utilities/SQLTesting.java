@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
@@ -59,7 +60,6 @@ public class SQLTesting {
 
 			// for every key, value
 			for (int l = 0; l < columnName.size(); l++) {
-				// add them into the HashMap by calling the
 				// put() method on the key-value pair
 				map.put(columnName.get(l), Values.get(l));
 			}
