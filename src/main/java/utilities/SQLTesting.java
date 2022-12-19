@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
@@ -42,20 +43,28 @@ public class SQLTesting {
 			System.out.println("List of column names in the current table: ");
 			// While Loop to iterate through all data and print results
 			int count = rsMetaData.getColumnCount();
+			ArrayList<String> columnName = new ArrayList<String>();
 			for (int i = 1; i <= count; i++) {
-				System.out.print(rsMetaData.getColumnName(i) + " ");
-//				while (rs.next()) {
-//					int k = 1;
-//					while (k <= count) {
-//						map.put(rsMetaData.getColumnName(i), rs.getString(i));
-//					}
-//				}
+//				System.out.print(rsMetaData.getColumnName(i) + " ");
+				columnName.add(rsMetaData.getColumnName(i));
 			}
-			System.out.println(map+"aa ");
-//			while (rs.next()) {
-//				String value = rs.getString(1);
-//				System.out.println(value);
-//			}
+			ArrayList<String> Values = new ArrayList<String>();
+			while (rs.next()) {
+				int k = 1;
+				while (k <= count) {
+//					System.out.print(rs.getString(k) + " ");
+					Values.add(rs.getString(k++));
+				}
+			}
+
+			// for every key, value
+			for (int l = 0; l < columnName.size(); l++) {
+				// add them into the HashMap by calling the
+				// put() method on the key-value pair
+				map.put(columnName.get(l), Values.get(l));
+			}
+			System.out.println(map);
+
 			// closing DB Connection
 			con.close();
 		} catch (SQLException sqle) {
