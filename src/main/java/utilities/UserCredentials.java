@@ -15,20 +15,4 @@ public class UserCredentials {
 	public String cvv = null;
 	public String billingAddress = null;
 	public String zipcode = null;
-	
-	public String group = null;
-	
-	public String firstNameToUpdate = null;
-	public String lastNameToUpdate = null;
-	public String emailIdToUpdate = null;
-	public String passwordToUpdate = null;
-	public String countryCodeToUpdate = null;
-	public String phoneNoToUpdate = null;
-	public String userToBeAdded = null;
-	public String userToBeEdited = null;
-	public String userToBeDeleted = null;
-	public String userToBeDeleted2 = null;
-	public String moveToGroup = null;
-	public String userToBeReactivated = null;
-
 }
