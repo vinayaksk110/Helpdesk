@@ -405,30 +405,6 @@ public class GoogleDriveExcelUtility {
 				userData.billingAddress = rowValues.get(i).toString();
 			else if(columnHeading.equals("zip code"))
 				userData.zipcode = rowValues.get(i).toString();
-			else if(columnHeading.equals("firstname to update"))
-				userData.firstNameToUpdate = rowValues.get(i).toString();
-			else if(columnHeading.equals("lastname to update"))
-				userData.lastNameToUpdate = rowValues.get(i).toString();
-			else if(columnHeading.equals("emailid to update"))
-				userData.emailIdToUpdate = rowValues.get(i).toString();
-			else if(columnHeading.equals("password to update"))
-				userData.passwordToUpdate = rowValues.get(i).toString();
-			else if(columnHeading.equals("countrycode to update"))
-				userData.countryCodeToUpdate = rowValues.get(i).toString();
-			else if(columnHeading.equals("phoneno to update"))
-				userData.phoneNoToUpdate = rowValues.get(i).toString();
-			else if(columnHeading.equals("user to be added"))
-				userData.userToBeAdded = rowValues.get(i).toString();
-			else if(columnHeading.equals("user to be edited"))
-				userData.userToBeEdited = rowValues.get(i).toString();
-			else if(columnHeading.equals("user to be deleted"))
-				userData.userToBeDeleted = rowValues.get(i).toString();
-			else if(columnHeading.equals("2nd user to be deleted"))
-				userData.userToBeDeleted2 = rowValues.get(i).toString();
-			else if(columnHeading.equals("group"))
-				userData.moveToGroup = rowValues.get(i).toString();
-			else if(columnHeading.equals("user to be reactivated"))
-				userData.userToBeReactivated = rowValues.get(i).toString();
 		}
 		
 		return userData;
