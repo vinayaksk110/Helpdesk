@@ -35,7 +35,6 @@ public class LoginToAccount extends RedesignedHDTestRunner {
 		//Connecting to DB
 		try {
 			userCredentials = sqlData.Getdata("Login", "LoginToAccount");
-			System.out.println("DB connected");
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}

@@ -36,7 +36,7 @@ public class SQLTesting {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// Create Connection to DB
 			Connection con = DriverManager.getConnection(dbUrl, username, password);
-			System.out.println("=======Connection established to the Database=======");
+			System.out.println("=======Connection Established To The Database=======");
 			// Create Statement Object
 			Statement stmt = con.createStatement();
 			// Execute the SQL Query. Store results in ResultSet

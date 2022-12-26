@@ -337,7 +337,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 			// Move image file to new destination
 //			File DestFile = new File(System.getProperty("user.home")+"\\git\\Helpdesk\\Screenshots"+dateFormat.format(date)+".png");
 //			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\scr."+Math.random()+".png");
-			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\scr."+dateFormat.format(date)+".png");
+			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\"+dateFormat.format(date)+".png");
 			// Copy file at destination
 			FileUtils.copyFile(SrcFile,DestFile);
 		} catch (Exception e) {
