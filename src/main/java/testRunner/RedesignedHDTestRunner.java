@@ -5,13 +5,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeoutException;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -34,13 +39,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import testbase.HelpDeskConstants;
 import utilities.DateNTime;
 import utilities.GoogleDriveExcelUtility;
+import utilities.SQLTesting;
 import utilities.reportUtilities.ReportHelper;
 
 @CucumberOptions(
 		features = "src\\test\\resources\\Features",
 		glue = { "StepDefinitions" },
 		plugin = {"pretty" , "json:target/cucumber-reports/cucumber-reports.json","html:target/cucumber-reports/cucumber-reports.html"},
-		tags = "@SignupTest",
+		tags = "@LoginTest",
 		monochrome = true,
 		dryRun = false)
 
@@ -60,6 +66,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	boolean headless = false;
 
 	protected GoogleDriveExcelUtility excelUtility = null;
+	SQLTesting sqlData;
 	protected ReportHelper reportHelper = null;
 
 	// For writing to excel sheet.
@@ -93,6 +100,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	public void closeEnvironment() {
 		// Write the test results and then shut down the environment.
 		try {
+			takeSnapShot();
 //			excelUtility.writeTestStatus(testName, testResult, testResultComment);
 			driver.quit();
 //			excelUtility.downloadTestResultsReport();
@@ -160,6 +168,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
 			// Create the object of excel utility to write the results back to sheets in
 			// google drive.
+			sqlData = new SQLTesting();
 
 //			excelUtility = new GoogleDriveExcelUtility(HelpDeskConstants.CREDENTIALS_PATH);
 //			excelUtility.addSheetToSpreadSheet(HelpDeskConstants.WORKSHEETID_TESTRESULTS, dateNTime.printCurrentDate());
@@ -314,6 +323,27 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
 		}
 		return waitResult;
+	}
+	
+	
+	public void takeSnapShot() throws Exception {
+		try {
+			Date date = new Date() ;
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss") ;
+			// Convert web driver object to TakeScreenshot
+			TakesScreenshot scrShot = ((TakesScreenshot) driver);
+			// Call getScreenshotAs method to create image file
+			File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+			// Move image file to new destination
+//			File DestFile = new File(System.getProperty("user.home")+"\\git\\Helpdesk\\Screenshots"+dateFormat.format(date)+".png");
+//			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\scr."+Math.random()+".png");
+			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\scr."+dateFormat.format(date)+".png");
+			// Copy file at destination
+			FileUtils.copyFile(SrcFile,DestFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Screenshot method failed due to following reason"+e.getMessage());
+		}
 	}
 	
 
