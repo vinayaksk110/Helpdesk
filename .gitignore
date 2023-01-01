@@ -1,4 +1,5 @@
 /target/
+/Screenshots/
 /.classpath
 /debug.log
 /tokens/
@@ -8,6 +9,5 @@
 /dataclass/
 /resources/
 /.project
-/src/test/resources/
 /src/main/resources/
 /src/test/resources/sheetsAPIclient_secret.json

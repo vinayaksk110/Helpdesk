@@ -7,12 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.asserts.SoftAssert;
 
-import testbase.TestBase;
+import testRunner.RedesignedHDTestRunner;
 
-public class LoginPage extends TestBase{
-	WebDriver driver;
+public class LoginPage extends RedesignedHDTestRunner{
+	private WebDriver driver = null;
+	private Wait<WebDriver> wait = null;
+	
     SoftAssert softAssert = new SoftAssert();
-//	private Wait<WebDriver> wait = null;
 	
 	@FindBy(id = "email")
 	public WebElement txtbxEmail;
@@ -26,21 +27,19 @@ public class LoginPage extends TestBase{
 	@FindBy(linkText = "Forgot password?")
 	public WebElement lnktxtForgotPassword;
 	
-	/**
-	 * This is the constructor that takes the web driver from test base and sets it to the Login page functions
-	 * @param driver
-	 */
-//	public LoginPage(WebDriver driver, Wait<WebDriver> wait) {
-//		this.driver = driver;
-//		this.wait = wait;
-//		PageFactory.initElements(this.driver, this);		
-//	}
+	@FindBy(linkText = "Sign Up")
+	public WebElement btnSignUp;
 	
-	public LoginPage(WebDriver driver) {
+	/**
+	 * 
+	 * @param driver
+	 * @param wait
+	 */
+	public LoginPage(WebDriver driver, Wait<WebDriver> wait) {
 		this.driver = driver;
+		this.wait = wait;
 		PageFactory.initElements(this.driver, this);		
 	}
-	
 	
 	/**
 	 * Allows to enter the users email address into the email text box
@@ -66,6 +65,14 @@ public class LoginPage extends TestBase{
 	public void clickSignIn() {
 		btnSignIn.click();
 		System.out.println("Clicked on Login button");
+	}
+	
+	/**
+	 * Click on the signup button
+	 */
+	public void clickSignUp() {
+		btnSignUp.click();
+		System.out.println("Clicked on Signup button");
 	}
 	
 	/**
