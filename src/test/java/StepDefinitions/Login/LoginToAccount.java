@@ -11,7 +11,7 @@ import pagelibrary.HeaderPage;
 import pagelibrary.HomePage;
 import pagelibrary.LoginPage;
 import testRunner.RedesignedHDTestRunner;
-import utilities.SQLTesting;
+import utilities.SequelDataUtility;
 import utilities.UserCredentials;
 
 public class LoginToAccount extends RedesignedHDTestRunner {
@@ -20,14 +20,14 @@ public class LoginToAccount extends RedesignedHDTestRunner {
 	HomePage homePage = null;
 	HeaderPage headerPage = null;
 	UserCredentials userCredentials = null;
-	SQLTesting sqlData =null;
+	SequelDataUtility sqlData =null;
 
 	public LoginToAccount() throws Exception {
 		loginPage = new LoginPage(driver, wait);
 		homePage = new HomePage(driver, wait);
 		headerPage = new HeaderPage(driver, wait);
 		userCredentials = new UserCredentials();
-		sqlData = new SQLTesting();
+		sqlData = new SequelDataUtility();
 	}
 
 	@Given("user is on login page")

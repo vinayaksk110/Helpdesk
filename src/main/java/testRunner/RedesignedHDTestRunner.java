@@ -39,7 +39,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import testbase.HelpDeskConstants;
 import utilities.DateNTime;
 import utilities.GoogleDriveExcelUtility;
-import utilities.SQLTesting;
+import utilities.SequelDataUtility;
 import utilities.reportUtilities.ReportHelper;
 
 @CucumberOptions(
@@ -66,7 +66,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 	boolean headless = false;
 
 	protected GoogleDriveExcelUtility excelUtility = null;
-	SQLTesting sqlData;
+	SequelDataUtility sqlData;
 	protected ReportHelper reportHelper = null;
 
 	// For writing to excel sheet.
@@ -168,7 +168,7 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 
 			// Create the object of excel utility to write the results back to sheets in
 			// google drive.
-			sqlData = new SQLTesting();
+			sqlData = new SequelDataUtility();
 
 //			excelUtility = new GoogleDriveExcelUtility(HelpDeskConstants.CREDENTIALS_PATH);
 //			excelUtility.addSheetToSpreadSheet(HelpDeskConstants.WORKSHEETID_TESTRESULTS, dateNTime.printCurrentDate());

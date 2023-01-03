@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
-public class SQLTesting {
+public class SequelDataUtility {
 	UserCredentials userData = new UserCredentials();
 	HashMap<String, String> map = new HashMap<>();
 	ResultSetMetaData rsMetaData;
@@ -20,7 +20,7 @@ public class SQLTesting {
 //
 //	}
 	
-	public SQLTesting(){
+	public SequelDataUtility(){
 		
 	}
 
@@ -28,7 +28,7 @@ public class SQLTesting {
 		// String Table, String TestCase
 		try {
 			// Connection URL Syntax: "jdbc:mysql://ipaddress:portnumber/db_name"
-			String dbUrl = "jdbc:mysql://172.19.241.225:3306/Helpdesk";
+			String dbUrl = "jdbc:mysql://172.19.241.15:3306/Helpdesk";
 			String username = "vinni";
 			String password = "D@vteam12";
 			String query = "select * from "+Table+" where testCase='"+TestCase+"';";
