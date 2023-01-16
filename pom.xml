@@ -14,8 +14,8 @@
 		<cucmber-reporting>5.6.1</cucmber-reporting>
 		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
 		<maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
-		<maven.compiler.source.version>11</maven.compiler.source.version>
-		<maven.compiler.target.version>11</maven.compiler.target.version>
+		<maven.compiler.source.version>17</maven.compiler.source.version>
+		<maven.compiler.target.version>17</maven.compiler.target.version>
 	</properties>
 
 	<dependencies>

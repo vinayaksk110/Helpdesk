@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
+import com.mysql.jdbc.ResultSetMetaData;
 
 public class SequelDataUtility {
 	UserCredentials userData = new UserCredentials();

@@ -2,8 +2,6 @@ package utilities;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
