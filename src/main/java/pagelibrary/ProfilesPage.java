@@ -19,13 +19,27 @@ public class ProfilesPage extends RedesignedHDTestRunner {
 	}
 	
 	//WebElements
-	@FindBy(id = "fname")
-	public WebElement TxtBoxFirstName;
+	@FindBy(xpath = "//div[@class='inp-row']/div/label[contains(text(),'First Name')]//following-sibling::input")
+	public WebElement txtBoxFirstName;
 	
-	@FindBy(id = "downloadRpc")
-	public WebElement TxtBoxLastName;
+	@FindBy(xpath = "//div[@class='inp-row']/div/label[contains(text(),'Last Name')]//following-sibling::input")
+	public WebElement txtBoxLastName;
 	
-	@FindBy(id = "downloadRpc")
-	public WebElement btnDownloadHD;
+	@FindBy(xpath = "//div[@class='inp-row']/div/label[contains(text(),'Phone Number')]//following-sibling::input")
+	public WebElement txtBoxPhoneNumber;
+	
+	
+	@FindBy(xpath = "//button[@class='btn btn-primary' and contains (text(),'Save')]")
+	public WebElement buttonSave;
+	
+	public void updateFirstName(String fname) {
+		txtBoxFirstName.clear();
+		txtBoxFirstName.sendKeys(fname);
+	}
+	
+	public void updateLastName(String lname) {
+		txtBoxLastName.clear();
+		txtBoxLastName.sendKeys(lname);
+	}
 
 }

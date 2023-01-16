@@ -46,7 +46,7 @@ import utilities.reportUtilities.ReportHelper;
 		features = "src\\test\\resources\\Features",
 		glue = { "StepDefinitions" },
 		plugin = {"pretty" , "json:target/cucumber-reports/cucumber-reports.json","html:target/cucumber-reports/cucumber-reports.html"},
-		tags = "@LoginTest",
+		tags = "@ProfileTest",
 		monochrome = true,
 		dryRun = false)
 
@@ -335,9 +335,9 @@ public class RedesignedHDTestRunner extends AbstractTestNGCucumberTests {
 			// Call getScreenshotAs method to create image file
 			File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
 			// Move image file to new destination
-//			File DestFile = new File(System.getProperty("user.home")+"\\git\\Helpdesk\\Screenshots"+dateFormat.format(date)+".png");
+			File DestFile = new File(System.getProperty("user.home")+"\\git\\Helpdesk\\Screenshots"+dateFormat.format(date)+".png");
 //			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\scr."+Math.random()+".png");
-			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\"+dateFormat.format(date)+".png");
+//			File DestFile = new File("C:\\Users\\Vinayak\\git\\Helpdesk\\Screenshots\\"+dateFormat.format(date)+".png");
 			// Copy file at destination
 			FileUtils.copyFile(SrcFile,DestFile);
 		} catch (Exception e) {

@@ -23,15 +23,17 @@ public class HeaderPage extends RedesignedHDTestRunner{
 	@FindBy(id = "downloadRpc")
 	public WebElement btnDownloadHD;
 	
-	@FindBy(id = "imgSource")
+	@FindBy(id = "hd-prof-ico-id")
 	public WebElement lnkLoggedInUserName;
 	
 	@FindBy(id = "logout")
 	public WebElement lnkLogOut;
 	
-	@FindBy(id = "account")
+	@FindBy(xpath = "//div[@class='hd-profblk']//a[@title='My Account']")
 	public WebElement lnkMyAccount;
 	
+	@FindBy(xpath = "//*[.='Upgrade Now!']")
+	public WebElement btnUpgradeNow;
 	
 	//methods
 	public void logout() {
