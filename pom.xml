@@ -3,7 +3,6 @@
 	<groupId>idrivewebautomation</groupId>
 	<artifactId>idrivewebautomation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cucumber.version>7.8.0</cucumber.version>
@@ -14,10 +13,8 @@
 		<cucmber-reporting>5.6.1</cucmber-reporting>
 		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
 		<maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
-		<maven.compiler.source.version>17</maven.compiler.source.version>
-		<maven.compiler.target.version>17</maven.compiler.target.version>
+		<maven.compiler.release.version>17</maven.compiler.release.version>
 	</properties>
-
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 		<dependency>
@@ -25,129 +22,80 @@
 			<artifactId>cucumber-java</artifactId>
 			<version>${cucumber.version}</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>${webdrivermanager.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
 		<dependency>
 			<groupId>net.masterthought</groupId>
 			<artifactId>cucumber-reporting</artifactId>
 			<version>${cucmber-reporting}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.44</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>31.0.1-jre</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${apache.common.version}</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.16-beta2</version>
+			<version>4.1.2</version>
 		</dependency>
-
-
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
+			<version>4.1.2</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>3.9</version>
+			<version>4.1.2</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-scratchpad</artifactId>
-			<version>3.9</version>
+			<version>4.1.2</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/ooxml-schemas -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>ooxml-schemas</artifactId>
-			<version>1.1</version>
+			<version>1.4</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>openxml4j</artifactId>
 			<version>1.0-beta</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.9</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
-		<!-- This is for the jason object creation in sheets addition class -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20090211</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.5</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.vimalselvam</groupId>
 			<artifactId>cucumber-extentsreport</artifactId>
 			<version>3.0.2</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>3.1.2</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
 		<!-- INcluded below slf4j dependency for disabling the logging (does not 
 			affect functionality) -->
@@ -157,96 +105,13 @@
 			<version>1.7.30</version>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- Dependency for extent reports -->
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>3.1.5</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
-			<version>1.7.30</version> </dependency> -->
-
-		<!-- https://mvnrepository.com/artifact/backport-util-concurrent/backport-util-concurrent -->
-		<dependency>
-			<groupId>backport-util-concurrent</groupId>
-			<artifactId>backport-util-concurrent</artifactId>
-			<version>3.1</version>
-		</dependency>
-
-		<!-- Google dependencies -->
-		<!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client -->
-		<!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client -->
-		<dependency>
-			<groupId>com.google.api-client</groupId>
-			<artifactId>google-api-client</artifactId>
-			<version>1.23.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client-java6 -->
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client-java6</artifactId>
-			<version>1.11.0-beta</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client-jetty -->
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client-jetty</artifactId>
-			<version>1.11.0-beta</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client-java6 -->
-		<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client -->
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client</artifactId>
-			<version>1.23.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.http-client/google-http-client-jackson2 -->
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client-jackson2</artifactId>
-			<version>1.28.0</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-sheets -->
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-sheets</artifactId>
-			<version>v4-rev553-1.24.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-drive -->
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-drive</artifactId>
-			<version>v3-rev197-1.25.0</version>
-		</dependency>
-
-		<!-- Google drive jar dependency-->
-		<dependency>
-			<!-- Below tag refers to a working copy on how to include external lib 
-				that contains jar -->
-			<groupId>com.AccessGoogleDrive</groupId>
-			<artifactId>AccessGoogleDrive</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<!-- <scope>system</scope> <systemPath>D:\OfficeWorkspaces\RPC\AutomatedRemotePC\src\main\lib\com.AccessGoogleDrive-0.0.1-SNAPSHOT.jar</systemPath> -->
-			<!-- <systemPath>${basedir}/lib/com.AccessGoogleDrive-0.0.1-SNAPSHOT.jar</systemPath> -->
-			<!-- <groupId>com.AccessGoogleDrive</groupId> <artifactId>com.AccessGoogleDrive</artifactId> 
-				<version>0.0.1-SNAPSHOT</version> -->
-		</dependency>
-
-		<!-- Apache Commons Email dependency -->
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-email</artifactId>
-			<version>1.3.1</version>
-		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -254,8 +119,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
-					<source>${maven.compiler.source.version}</source>
-					<target>${maven.compiler.target.version}</target>
+					<release>${maven.compiler.release.version}</release>
 				</configuration>
 			</plugin>
 			<plugin>

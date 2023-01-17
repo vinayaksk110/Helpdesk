@@ -20,14 +20,12 @@ public class LoginToAccount extends RedesignedHDTestRunner {
 	HomePage homePage = null;
 	HeaderPage headerPage = null;
 	UserCredentials userCredentials = null;
-	SequelDataUtility sqlData =null;
 
 	public LoginToAccount() throws Exception {
 		loginPage = new LoginPage(driver, wait);
 		homePage = new HomePage(driver, wait);
 		headerPage = new HeaderPage(driver, wait);
 		userCredentials = new UserCredentials();
-		sqlData = new SequelDataUtility();
 	}
 
 	@Given("user is on login page")
