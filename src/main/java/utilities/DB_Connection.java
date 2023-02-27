@@ -8,11 +8,11 @@ import java.util.concurrent.Executors;
 public class DB_Connection {
     public Connection conn;
     private Statement statement;
-    public static DBConnection db;
+    public static DB_Connection db;
     
 
 
-    private DBConnection() {
+    private DB_Connection() {
         String url= getProperties("DBUrl");
         String dbName = getProperties("DBName");
         String driver = "com.mysql.jdbc.Driver";
@@ -29,9 +29,9 @@ public class DB_Connection {
         }
     }
     
-    public static synchronized DBConnection getDbCon() {
+    public static synchronized DB_Connection getDbCon() {
         if ( db == null ) {
-            db = new DBConnection();
+            db = new DB_Connection();
         }
         return db;
  

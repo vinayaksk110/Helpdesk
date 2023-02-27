@@ -15,7 +15,7 @@ public class OTPReader {
 	public String otpReaderUtility() {
 		RestAssured.baseURI = "https://api.twilio.com/2010-04-01/Accounts/ACc3104b3eedcee501f784298f87045af4/Messages.json"; 
 		RequestSpecification request = RestAssured.given(); 
-		request.auth().basic("ACc3104b3eedcee501f784298f87045af4", "0b95e1dbe024d8db27eebb38e6358cb7"); 
+		request.auth().basic("ACc3104b3eedcee501f784298f87045af4", ""); 
 		Response response = request.get(); 
  
 		//System.out.println(response.asString()); 
